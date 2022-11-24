@@ -3,22 +3,22 @@
 
   <div class="student-container">
     <div class="student-form">
-      <form>
+      <form #form = "ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="">Student Name: </label>
-          <input type="text" name="studentName">
+          <input type="text" name="studentName" [(ngModel)] = "student.studentName">
         </div>
         <div class="form-group">
           <label for="">Department: </label>
-          <input type="text" name="department">
+          <input type="text" name="department" [(ngModel)] = "student.department">
         </div>
         <div class="form-group">
           <label for="">Email: </label>
-          <input type="text" name="email">
+          <input type="text" name="email" [(ngModel)] = "student.email">
         </div>
         <div class="form-group">
           <label for="">CGPA: </label>
-          <input type="text" name="cgpa">
+          <input type="text" name="cgpa" [(ngModel)] = "student.cgpa">
         </div>
         <div class="form-group">
           <button>Save</button>
@@ -26,14 +26,14 @@
       </form>
     </div>
     <div class="student-grid">
-      <div class="student-row">
-        <div class="student-row-details">
-            <span>Tufayel Ahmed</span>
-            <span>CSE</span>
-            <span>3.53</span>
+      <div class="student-row" *ngFor="let student of students">
+        <div class="student-row-details" (click)="selectStudent(student)">
+            <span>{{student.studentName}}</span>
+            <span>{{student.department}}</span>
+            <span>{{student.cgpa}}</span>
         </div>
         <div class="student-row-action">
-          <a><i class="fa-solid fa-trash-can"></i></a>
+          <a (click)="deleteStudent(student.studentId)"><i class="fa-solid fa-trash-can"></i></a>
         </div>
       </div>
     </div>
